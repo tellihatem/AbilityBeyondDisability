@@ -136,7 +136,6 @@
     .hero-btns {
       display: flex;
       gap: 12px;
-      justify-content: flex-end;
     }
 
     .btn-primary {
@@ -250,6 +249,16 @@
       border-radius: 50px;
     }
 
+    /* Talent card floating animation */
+    @keyframes floatBobbing {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .talent-card {
+      animation: floatBobbing 3s ease-in-out infinite;
+    }
+
     /* ──────────────────────────────────────────
        STATS
     ────────────────────────────────────────── */
@@ -275,7 +284,7 @@
       padding: 0 16px;
     }
 
-    .stat-item:last-child { border-right: none; }
+    .stat-item:first-child{ border-right: none; }
 
     .stat-number {
       font-size: 48px;
@@ -426,6 +435,7 @@
 
     .events-layout {
       display: flex;
+      justify-content: center;
       gap: 48px;
       margin-top: 48px;
     }
@@ -523,6 +533,7 @@
       display: flex;
       overflow: hidden;
       min-height: 524px;
+      max-width: 724px;
     }
 
     .featured-text {
@@ -785,6 +796,202 @@
     ────────────────────────────────────────── */
     .pin-icon { display: inline-block; }
 
+    /* ──────────────────────────────────────────
+       CAROUSEL CONTROLS
+    ────────────────────────────────────────── */
+    .carousel-controls {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .carousel-arrow {
+      background: var(--clr-cream);
+      border: 2px solid var(--clr-border);
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .carousel-arrow:hover {
+      background: var(--clr-rust);
+      border-color: var(--clr-rust);
+    }
+
+    .carousel-arrow:hover svg {
+      stroke: #fff;
+    }
+
+    /* Featured event carousel */
+    .featured-carousel-wrapper {
+      position: relative;
+    }
+
+    .featured-carousel-controls {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      transform: translateY(-50%);
+      display: flex;
+      justify-content: space-between;
+      padding: 0 16px;
+      pointer-events: none;
+    }
+
+    .featured-arrow {
+      background: rgba(255,255,255,0.2);
+      border: 2px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      pointer-events: auto;
+    }
+
+    .featured-arrow:hover {
+      background: rgba(255,255,255,0.4);
+    }
+
+    .featured-indicators {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+    }
+
+    .featured-indicator {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .featured-indicator.active {
+      background: #fff;
+      transform: scale(1.2);
+    }
+
+    /* ──────────────────────────────────────────
+       MODALS
+    ────────────────────────────────────────── */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .modal-content {
+      background: #fff;
+      border-radius: 16px;
+      max-width: 900px;
+      width: 100%;
+      max-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: var(--clr-cream);
+      border: 2px solid var(--clr-border);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      font-size: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      transition: all 0.3s ease;
+    }
+
+    .modal-close:hover {
+      background: var(--clr-rust);
+      border-color: var(--clr-rust);
+      color: #fff;
+    }
+
+    .modal-header {
+      padding: 24px 24px 16px;
+      border-bottom: 1px solid var(--clr-border);
+    }
+
+    .modal-header h2 {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--clr-dark);
+      text-align: right;
+    }
+
+    .modal-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px;
+    }
+
+    /* Events modal grid */
+    .events-modal-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* Gallery modal grid */
+    .gallery-modal-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .gallery-modal-grid .gallery-cell {
+      aspect-ratio: 1;
+      cursor: pointer;
+    }
+
+    /* Loading spinner */
+    .loading-spinner {
+      display: flex;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid var(--clr-border);
+      border-top-color: var(--clr-rust);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
     @media (max-width: 1024px) {
       .nav { padding: 8px 24px; }
       .hero, .section, .events-section, .gallery-section, .footer { padding: 48px 24px; }
@@ -797,6 +1004,19 @@
       .gc-large  { grid-column: 1 / span 2; grid-row: auto; }
       .gc-mid-t, .gc-mid-b, .gc-tall { grid-column: auto; grid-row: auto; }
       .hero { flex-direction: column-reverse; }
+      .gallery-modal-grid { grid-template-columns: repeat(2, 1fr); }
+      .modal-content { max-height: 85vh; }
+    }
+
+    @media (max-width: 768px) {
+      .carousel-controls { justify-content: center; }
+      .featured-carousel-controls { padding: 0 8px; }
+      .featured-arrow { width: 40px; height: 40px; }
+      .featured-indicators { bottom: 16px; }
+      .modal { padding: 16px; }
+      .modal-content { max-height: 90vh; }
+      .modal-header h2 { font-size: 24px; }
+      .gallery-modal-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -850,7 +1070,7 @@
       </div>
 
       <div class="talent-avatar-wrap">
-        <img src="https://www.figma.com/api/mcp/asset/6461fe80-1cbf-4c4a-80c6-e613abe19ff8" alt="أحمد" onerror="this.style.background='#fceae5';this.alt='';" />
+        <img src="https://www.figma.com/api/mcp/asset/6461fe80-1cbf-4c4a-80c6-e613abe19ff8" alt="أحمد" loading="lazy" onerror="this.style.background='#fceae5';this.alt='';" />
       </div>
 
       <div class="talent-name">أحمد</div>
@@ -871,19 +1091,19 @@
 <div class="stats">
   <div class="stats-grid">
     <div class="stat-item">
-      <div class="stat-number">+1,200</div>
+      <div class="stat-number" data-target="1200">0</div>
       <div class="stat-label">موهبة مسجلة</div>
     </div>
     <div class="stat-item">
-      <div class="stat-number">58</div>
+      <div class="stat-number" data-target="58">0</div>
       <div class="stat-label">ولاية ممثلة</div>
     </div>
     <div class="stat-item">
-      <div class="stat-number">3,500</div>
+      <div class="stat-number" data-target="3500">0</div>
       <div class="stat-label">عمل فني</div>
     </div>
     <div class="stat-item">
-      <div class="stat-number">0</div>
+      <div class="stat-number" data-target="0">0</div>
       <div class="stat-label">فعالية وطنية</div>
     </div>
   </div>
@@ -893,14 +1113,14 @@
 <!-- ══════════════════ TALENTS GRID ══════════════════ -->
 <section class="section">
   <div class="section-header">
-    <a class="see-all" href="#">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
-      عرض الكل
-    </a>
     <div class="section-heading">
       <h2>اكتشف المواهب</h2>
       <p>مبدعون من مختلف ولايات الوطن يشاركون شغفهم</p>
     </div>
+    <a class="see-all" href="#">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+      عرض الكل
+    </a>
   </div>
 
   <div class="talents-grid">
@@ -989,7 +1209,36 @@
   </div>
 
   <div class="events-layout">
+    
+    <!-- Featured Event -->
+    <div class="featured-event">
+      <div class="featured-text">
+        <span class="featured-tag">حدث وطني</span>
+        <h3 class="featured-title">اليوم الوطني<br>للحرف</h3>
+        <p class="featured-desc">
+          تظاهرة كبرى تجمع أمهر الحرفيين<br>
+          من ذوي الهمم لعرض إبداعاتهم في<br>
+          قلب العاصمة.
+        </p>
+        <div class="featured-meta">
+          <div class="featured-meta-row">
+            <span>قصر المعارض، الصنوبر البحري</span>
+            <svg width="16" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div class="featured-meta-row">
+            <span>15 - 18 نوفمبر 2026</span>
+            <svg width="18" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+        </div>
+        <button class="btn-register">سجل حضورك</button>
+      </div>
 
+      <div class="featured-image">
+        <img src="https://www.figma.com/api/mcp/asset/a376706e-4cd0-432c-9a91-9ba22ec398ce" alt="معرض الفن" loading="lazy"
+             onerror="this.parentElement.querySelector('.featured-image-placeholder').style.display='block'; this.style.display='none';" />
+        <div class="featured-image-placeholder" style="display:none;"></div>
+      </div>
+    </div>
     <!-- List -->
     <div class="event-list">
 
@@ -1053,35 +1302,7 @@
 
     </div>
 
-    <!-- Featured Event -->
-    <div class="featured-event">
-      <div class="featured-text">
-        <span class="featured-tag">حدث وطني</span>
-        <h3 class="featured-title">اليوم الوطني<br>للحرف</h3>
-        <p class="featured-desc">
-          تظاهرة كبرى تجمع أمهر الحرفيين<br>
-          من ذوي الهمم لعرض إبداعاتهم في<br>
-          قلب العاصمة.
-        </p>
-        <div class="featured-meta">
-          <div class="featured-meta-row">
-            <span>قصر المعارض، الصنوبر البحري</span>
-            <svg width="16" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          </div>
-          <div class="featured-meta-row">
-            <span>15 - 18 نوفمبر 2026</span>
-            <svg width="18" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-          </div>
-        </div>
-        <button class="btn-register">سجل حضورك</button>
-      </div>
-
-      <div class="featured-image">
-        <img src="https://www.figma.com/api/mcp/asset/a376706e-4cd0-432c-9a91-9ba22ec398ce" alt="معرض الفن"
-             onerror="this.parentElement.querySelector('.featured-image-placeholder').style.display='block'; this.style.display='none';" />
-        <div class="featured-image-placeholder" style="display:none;"></div>
-      </div>
-    </div>
+    
 
   </div>
 </section>
@@ -1162,6 +1383,489 @@
     <div class="footer-copy">© ٢٠٢٦ رغم إعاقتي أبدع. صنع بكل حب وفخر.</div>
   </div>
 </footer>
+
+<!-- ══════════════════ MODALS ══════════════════ -->
+<!-- Events Modal -->
+<div id="events-modal" class="modal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeEventsModal()">&times;</button>
+    <div class="modal-header">
+      <h2>جميع الفعاليات</h2>
+    </div>
+    <div class="modal-body" id="events-modal-body">
+      <div class="events-modal-grid" id="events-grid"></div>
+      <div class="loading-spinner" id="events-loading" style="display:none;">
+        <div class="spinner"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Gallery Modal -->
+<div id="gallery-modal" class="modal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeGalleryModal()">&times;</button>
+    <div class="modal-header">
+      <h2>معرض الإبداعات</h2>
+    </div>
+    <div class="modal-body" id="gallery-modal-body">
+      <div class="gallery-modal-grid" id="gallery-grid"></div>
+      <div class="loading-spinner" id="gallery-loading" style="display:none;">
+        <div class="spinner"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ══════════════════ STATS COUNTER ANIMATION ══════════════════
+function animateCounter(element, target, duration = 2000) {
+  const start = 0;
+  const startTime = performance.now();
+  const isPlus = element.textContent.includes('+');
+  
+  function update(currentTime) {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const easeOut = 1 - Math.pow(1 - progress, 3);
+    const current = Math.floor(start + (target - start) * easeOut);
+    
+    element.textContent = (isPlus ? '+' : '') + current.toLocaleString('ar-EG');
+    
+    if (progress < 1) {
+      requestAnimationFrame(update);
+    }
+  }
+  
+  requestAnimationFrame(update);
+}
+
+const statsObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const statNumbers = entry.target.querySelectorAll('.stat-number');
+      statNumbers.forEach(stat => {
+        const target = parseInt(stat.dataset.target);
+        animateCounter(stat, target);
+      });
+      statsObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.5 });
+
+const statsSection = document.querySelector('.stats');
+if (statsSection) {
+  statsObserver.observe(statsSection);
+}
+
+// ══════════════════ TALENTS CAROUSEL ══════════════════
+let talentsCurrentSlide = 0;
+const talentsCards = document.querySelectorAll('.talent-card-grid');
+const talentsPerSlide = window.innerWidth > 1024 ? 4 : window.innerWidth > 768 ? 2 : 1;
+const totalTalentsSlides = Math.ceil(talentsCards.length / talentsPerSlide);
+
+function showTalentsSlide(index) {
+  const grid = document.querySelector('.talents-grid');
+  const cardWidth = talentsCards[0].offsetWidth + 24;
+  grid.style.transform = `translateX(${index * cardWidth}px)`;
+  grid.style.transition = 'transform 0.5s ease-in-out';
+  talentsCurrentSlide = index;
+}
+
+function nextTalentsSlide() {
+  if (talentsCurrentSlide < totalTalentsSlides - 1) {
+    showTalentsSlide(talentsCurrentSlide + 1);
+  } else {
+    showTalentsSlide(0);
+  }
+}
+
+function prevTalentsSlide() {
+  if (talentsCurrentSlide > 0) {
+    showTalentsSlide(talentsCurrentSlide - 1);
+  } else {
+    showTalentsSlide(totalTalentsSlides - 1);
+  }
+}
+
+// Add carousel controls to talents section
+const talentsSection = document.querySelector('.section');
+if (talentsSection) {
+  const carouselControls = document.createElement('div');
+  carouselControls.className = 'carousel-controls';
+  carouselControls.innerHTML = `
+    <button class="carousel-arrow carousel-arrow-prev" onclick="prevTalentsSlide()">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+    <button class="carousel-arrow carousel-arrow-next" onclick="nextTalentsSlide()">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+  `;
+  talentsSection.querySelector('.section-header').after(carouselControls);
+  
+  // Convert grid to carousel
+  const grid = document.querySelector('.talents-grid');
+  grid.style.overflow = 'hidden';
+  grid.style.display = 'flex';
+  grid.style.gap = '24px';
+  grid.style.transition = 'transform 0.5s ease-in-out';
+}
+
+// ══════════════════ FEATURED EVENT CAROUSEL ══════════════════
+const featuredEvents = [
+  {
+    tag: 'حدث وطني',
+    title: 'اليوم الوطني<br>للحرف',
+    desc: 'تظاهرة كبرى تجمع أمهر الحرفيين<br>من ذوي الهمم لعرض إبداعاتهم في<br>قلب العاصمة.',
+    venue: 'قصر المعارض، الصنوبر البحري',
+    date: '15 - 18 نوفمبر 2026',
+    gradient: 'linear-gradient(135deg, #8b3a1c 0%, #fea767 100%)'
+  },
+  {
+    tag: 'معرض دولي',
+    title: 'إبداعات بلا<br>حدود',
+    desc: 'معرض يجمع المواهب الجزائرية<br>مع نظرائهم الدوليين لتبادل<br>الخبرات والإبداعات.',
+    venue: 'مركز الثقافة، الجزائر',
+    date: '20 - 23 ديسمبر 2026',
+    gradient: 'linear-gradient(135deg, #005a72 0%, #8b3a1c 100%)'
+  },
+  {
+    tag: 'مسابقة وطنية',
+    title: 'جائزة الإبداع<br>الذهبي',
+    desc: 'مسابقة كبرى لتكريم أفضل<br>المبدعين في مختلف المجالات<br>الفنية والثقافية.',
+    venue: 'قصر المؤتمرات، وهران',
+    date: '10 - 12 يناير 2027',
+    gradient: 'linear-gradient(135deg, #d4af37 0%, #8b3a1c 100%)'
+  }
+];
+
+let currentFeaturedSlide = 0;
+
+function showFeaturedSlide(index) {
+  const featuredEvent = document.querySelector('.featured-event');
+  const event = featuredEvents[index];
+  
+  featuredEvent.querySelector('.featured-tag').textContent = event.tag;
+  featuredEvent.querySelector('.featured-title').innerHTML = event.title;
+  featuredEvent.querySelector('.featured-desc').innerHTML = event.desc;
+  featuredEvent.querySelector('.featured-meta-row:first-child span').textContent = event.venue;
+  featuredEvent.querySelector('.featured-meta-row:last-child span').textContent = event.date;
+  featuredEvent.querySelector('.featured-image-placeholder').style.background = event.gradient;
+  
+  // Update indicators
+  document.querySelectorAll('.featured-indicator').forEach((ind, i) => {
+    ind.classList.toggle('active', i === index);
+  });
+  
+  currentFeaturedSlide = index;
+}
+
+function nextFeaturedSlide() {
+  showFeaturedSlide((currentFeaturedSlide + 1) % featuredEvents.length);
+}
+
+function prevFeaturedSlide() {
+  showFeaturedSlide((currentFeaturedSlide - 1 + featuredEvents.length) % featuredEvents.length);
+}
+
+// Add carousel controls and indicators to featured event
+const featuredEvent = document.querySelector('.featured-event');
+if (featuredEvent) {
+  const carouselWrapper = document.createElement('div');
+  carouselWrapper.className = 'featured-carousel-wrapper';
+  carouselWrapper.style.position = 'relative';
+  featuredEvent.parentNode.insertBefore(carouselWrapper, featuredEvent);
+  carouselWrapper.appendChild(featuredEvent);
+  
+  // Add controls
+  const controls = document.createElement('div');
+  controls.className = 'featured-carousel-controls';
+  controls.innerHTML = `
+    <button class="featured-arrow featured-arrow-prev" onclick="prevFeaturedSlide()">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+    <button class="featured-arrow featured-arrow-next" onclick="nextFeaturedSlide()">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+  `;
+  carouselWrapper.appendChild(controls);
+  
+  // Add indicators
+  const indicators = document.createElement('div');
+  indicators.className = 'featured-indicators';
+  featuredEvents.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = `featured-indicator ${i === 0 ? 'active' : ''}`;
+    dot.onclick = () => showFeaturedSlide(i);
+    indicators.appendChild(dot);
+  });
+  carouselWrapper.appendChild(indicators);
+  
+  // Auto-play
+  setInterval(nextFeaturedSlide, 5000);
+}
+
+// ══════════════════ EVENTS MODAL ══════════════════
+const existingEvents = [
+  {
+    type: 'ورشة عمل',
+    dotColor: 'var(--clr-amber)',
+    title: 'أساسيات الخزف الفني',
+    venue: 'مركز الفنون، تيبازة',
+    day: '24',
+    month: 'أكتوبر'
+  },
+  {
+    type: 'معرض محلي',
+    dotColor: '#004153',
+    title: 'ألوان الصحراء',
+    venue: 'دار الثقافة، غرداية',
+    day: '05',
+    month: 'نوفمبر'
+  },
+  {
+    type: 'مسابقة',
+    dotColor: 'var(--clr-gold)',
+    title: 'جائزة الإبداع الذهبي',
+    venue: 'أونلاين',
+    day: '12',
+    month: 'ديسمبر'
+  }
+];
+
+let eventsPage = 1;
+let eventsLoading = false;
+
+function createEventCard(event) {
+  return `
+    <div class="event-item">
+      <div class="event-details">
+        <div class="event-type">
+          <span>${event.type}</span>
+          <span class="event-dot" style="background:${event.dotColor};"></span>
+        </div>
+        <div class="event-title">${event.title}</div>
+        <div class="event-venue">
+          <svg width="11" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          ${event.venue}
+        </div>
+      </div>
+      <div class="event-date-box">
+        <div class="event-day">${event.day}</div>
+        <div class="event-month">${event.month}</div>
+      </div>
+    </div>
+  `;
+}
+
+function loadMoreEvents() {
+  if (eventsLoading) return;
+  eventsLoading = true;
+  
+  const loadingSpinner = document.getElementById('events-loading');
+  loadingSpinner.style.display = 'flex';
+  
+  setTimeout(() => {
+    const grid = document.getElementById('events-grid');
+    
+    // Load existing events on first page
+    if (eventsPage === 1) {
+      existingEvents.forEach(event => {
+        grid.innerHTML += createEventCard(event);
+      });
+    }
+    
+    // Add placeholder events for lazy loading demo
+    const placeholderEvents = [
+      {
+        type: 'ندوة',
+        dotColor: '#8b3a1c',
+        title: 'فن الخط العربي',
+        venue: 'المكتبة الوطنية',
+        day: '15',
+        month: 'يناير'
+      },
+      {
+        type: 'معرض',
+        dotColor: '#005a72',
+        title: 'ألوان الربيع',
+        venue: 'قصر الثقافة',
+        day: '20',
+        month: 'فبراير'
+      }
+    ];
+    
+    placeholderEvents.forEach(event => {
+      grid.innerHTML += createEventCard(event);
+    });
+    
+    eventsPage++;
+    eventsLoading = false;
+    loadingSpinner.style.display = 'none';
+  }, 1000);
+}
+
+function openEventsModal() {
+  const modal = document.getElementById('events-modal');
+  const grid = document.getElementById('events-grid');
+  grid.innerHTML = '';
+  eventsPage = 1;
+  loadMoreEvents();
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeEventsModal() {
+  const modal = document.getElementById('events-modal');
+  modal.style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+// Events modal infinite scroll
+document.getElementById('events-modal-body').addEventListener('scroll', function() {
+  if (this.scrollTop + this.clientHeight >= this.scrollHeight - 50) {
+    loadMoreEvents();
+  }
+});
+
+document.querySelector('.btn-all-events').addEventListener('click', openEventsModal);
+
+// ══════════════════ GALLERY MODAL ══════════════════
+const existingGallery = [
+  {
+    title: 'اللوحة الحالمة',
+    artist: 'بقلم: كريم بن علي',
+    gradient: 'grad-1'
+  },
+  {
+    title: 'جرة فخارية',
+    artist: '',
+    gradient: 'grad-2'
+  },
+  {
+    title: 'تطريز جزائري',
+    artist: 'ليلى عبدون',
+    gradient: 'grad-3'
+  },
+  {
+    title: 'منحوتة',
+    artist: '',
+    gradient: 'grad-4'
+  }
+];
+
+let galleryPage = 1;
+let galleryLoading = false;
+
+function createGalleryCard(item) {
+  return `
+    <div class="gallery-cell ${item.gradient}">
+      <div class="gallery-overlay">
+        <h4>${item.title}</h4>
+        ${item.artist ? `<p>${item.artist}</p>` : ''}
+      </div>
+    </div>
+  `;
+}
+
+function loadMoreGallery() {
+  if (galleryLoading) return;
+  galleryLoading = true;
+  
+  const loadingSpinner = document.getElementById('gallery-loading');
+  loadingSpinner.style.display = 'flex';
+  
+  setTimeout(() => {
+    const grid = document.getElementById('gallery-grid');
+    
+    // Load existing gallery on first page
+    if (galleryPage === 1) {
+      existingGallery.forEach(item => {
+        grid.innerHTML += createGalleryCard(item);
+      });
+    }
+    
+    // Add placeholder gallery items for lazy loading demo
+    const placeholderGallery = [
+      {
+        title: 'لوحة تجريدية',
+        artist: 'فنان مجهول',
+        gradient: 'grad-1'
+      },
+      {
+        title: 'عمل نحتي',
+        artist: '',
+        gradient: 'grad-2'
+      }
+    ];
+    
+    placeholderGallery.forEach(item => {
+      grid.innerHTML += createGalleryCard(item);
+    });
+    
+    galleryPage++;
+    galleryLoading = false;
+    loadingSpinner.style.display = 'none';
+  }, 1000);
+}
+
+function openGalleryModal() {
+  const modal = document.getElementById('gallery-modal');
+  const grid = document.getElementById('gallery-grid');
+  grid.innerHTML = '';
+  galleryPage = 1;
+  loadMoreGallery();
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeGalleryModal() {
+  const modal = document.getElementById('gallery-modal');
+  modal.style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+// Gallery modal infinite scroll
+document.getElementById('gallery-modal-body').addEventListener('scroll', function() {
+  if (this.scrollTop + this.clientHeight >= this.scrollHeight - 50) {
+    loadMoreGallery();
+  }
+});
+
+document.querySelector('.gallery-center .btn-outline').addEventListener('click', openGalleryModal);
+
+// Close modals on backdrop click
+document.querySelectorAll('.modal').forEach(modal => {
+  modal.addEventListener('click', function(e) {
+    if (e.target === this) {
+      this.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+  });
+});
+
+// ══════════════════ LAZY LOADING ══════════════════
+// Add loading="lazy" to all images
+document.querySelectorAll('img').forEach(img => {
+  img.loading = 'lazy';
+});
+
+// Intersection Observer for fade-in animation
+const imageObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      imageObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('img').forEach(img => {
+  img.style.opacity = '0';
+  img.style.transition = 'opacity 0.5s ease-in';
+  imageObserver.observe(img);
+});
+</script>
 
 </body>
 </html>
