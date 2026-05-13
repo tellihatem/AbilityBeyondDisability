@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>رغم إعاقتي أبدع</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --clr-dark:       #231a17;
+      --clr-brown:      #55433d;
+      --clr-rust:       #6c2407;
+      --clr-amber:      #904d13;
+      --clr-gold:       #d4af37;
+      --clr-peach:      #ffb59c;
+      --clr-blush:      #fceae5;
+      --clr-cream:      #fff8f6;
+      --clr-border:     #dbc1b9;
+      --clr-footer-bg:  #382e2b;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background: #fff8f6;
+      color: var(--clr-dark);
+      direction: rtl;
+      overflow-x: hidden;
+    }
+
+    /* ──────────────────────────────────────────
+       NAV
+    ────────────────────────────────────────── */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--clr-cream);
+      padding: 8px 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,.1), 0 2px 4px -2px rgba(0,0,0,.1);
+    }
+
+    .nav-logo {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--clr-rust);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 48px;
+      align-items: center;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--clr-brown);
+      text-decoration: none;
+    }
+
+    .nav-links .active a {
+      font-weight: 700;
+      color: var(--clr-rust);
+      border-bottom: 2px solid var(--clr-rust);
+      padding-bottom: 6px;
+    }
+
+    .btn-join {
+      background: var(--clr-rust);
+      color: #fff;
+      font-family: 'Tajawal', sans-serif;
+      font-size: 16px;
+      padding: 12px 48px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 12px 18px rgba(26,20,16,.1);
+    }
+
+    /* ──────────────────────────────────────────
+       HERO
+    ────────────────────────────────────────── */
+    .hero {
+      padding: 80px 64px;
+      display: flex;
+      align-items: center;
+      gap: 48px;
+    }
+
+    .hero-text { flex: 1; }
+
+    .hero-heading {
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--clr-dark);
+      text-align: right;
+      margin-bottom: 24px;
+    }
+
+    .hero-heading .highlight {
+      position: relative;
+      display: inline-block;
+    }
+
+    .hero-heading .highlight::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      right: 0; left: 0;
+      height: 8px;
+      background: var(--clr-gold);
+      opacity: .8;
+      border-radius: 9999px;
+    }
+
+    .hero-desc {
+      font-size: 18px;
+      color: var(--clr-brown);
+      text-align: right;
+      line-height: 1.6;
+      margin-bottom: 48px;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 12px;
+      justify-content: flex-end;
+    }
+
+    .btn-primary {
+      background: var(--clr-rust);
+      color: #fff;
+      font-family: 'Tajawal', sans-serif;
+      font-size: 16px;
+      padding: 14px 48px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 12px 18px rgba(26,20,16,.1);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--clr-amber);
+      font-family: 'Tajawal', sans-serif;
+      font-size: 16px;
+      padding: 14px 50px;
+      border: 2px solid var(--clr-amber);
+      border-radius: 50px;
+      cursor: pointer;
+    }
+
+    /* Talent-of-the-week card */
+    .hero-card-wrap {
+      flex: 1;
+      position: relative;
+      min-height: 300px;
+    }
+
+    .blob1, .blob2 {
+      position: absolute;
+      border-radius: 9999px;
+      filter: blur(32px);
+      pointer-events: none;
+    }
+    .blob1 { width:256px; height:256px; background:#fceae5; opacity:.6; top:-40px; left:-40px; }
+    .blob2 { width:192px; height:192px; background:#ffdbcf; opacity:.4; bottom:-40px; right:-40px; filter: blur(20px); }
+
+    .talent-card {
+      position: relative;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 12px 18px rgba(26,20,16,.1);
+      padding: 24px 24px 28px;
+      max-width: 320px;
+      margin: 84px auto 0;
+      text-align: center;
+    }
+
+    .talent-week-badge {
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--clr-gold);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 4px 16px;
+      border-radius: 50px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap;
+      box-shadow: 0 2px 4px rgba(0,0,0,.1);
+    }
+
+    .talent-avatar-wrap {
+      width: 128px;
+      height: 128px;
+      border-radius: 9999px;
+      border: 4px solid #f1dfda;
+      padding: 4px;
+      margin: 0 auto 12px;
+      overflow: hidden;
+    }
+
+    .talent-avatar-wrap img {
+      width: 100%;
+      height: 100%;
+      border-radius: 9999px;
+      object-fit: cover;
+    }
+
+    .talent-name { font-size: 24px; font-weight: 700; color: var(--clr-dark); }
+
+    .talent-location {
+      font-size: 16px;
+      color: var(--clr-brown);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      margin-top: 4px;
+    }
+
+    .talent-location svg { width:12px; height:15px; flex-shrink:0; }
+
+    .talent-tag {
+      display: inline-block;
+      margin-top: 16px;
+      background: var(--clr-blush);
+      border: 1px solid var(--clr-border);
+      color: var(--clr-amber);
+      font-size: 16px;
+      font-weight: 700;
+      padding: 9px 25px;
+      border-radius: 50px;
+    }
+
+    /* ──────────────────────────────────────────
+       STATS
+    ────────────────────────────────────────── */
+    .stats {
+      background: var(--clr-rust);
+      padding: 48px 64px;
+      box-shadow: 0 12px 18px rgba(26,20,16,.1);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      border-right: 1px solid rgba(255,255,255,.2);
+      padding: 0 16px;
+    }
+
+    .stat-item:last-child { border-right: none; }
+
+    .stat-number {
+      font-size: 48px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.2;
+    }
+
+    .stat-label {
+      font-size: 18px;
+      color: var(--clr-peach);
+      margin-top: 4px;
+    }
+
+    /* ──────────────────────────────────────────
+       TALENTS GRID
+    ────────────────────────────────────────── */
+    .section {
+      padding: 80px 64px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 48px;
+    }
+
+    .section-heading { text-align: right; }
+
+    .section-heading h2 {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--clr-dark);
+    }
+
+    .section-heading p {
+      font-size: 16px;
+      color: var(--clr-brown);
+      margin-top: 4px;
+    }
+
+    .see-all {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      color: var(--clr-amber);
+      font-size: 16px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .see-all svg { transform: rotate(180deg); }
+
+    .talents-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .talent-card-grid {
+      background: #fff;
+      border: 1px solid rgba(241,223,218,.5);
+      border-radius: 16px;
+      padding: 25px;
+      box-shadow: 0 12px 36px rgba(26,20,16,.1);
+    }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+
+    .card-badge {
+      background: var(--clr-blush);
+      color: var(--clr-brown);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 50px;
+    }
+
+    .card-avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 9999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .card-name {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--clr-dark);
+      text-align: right;
+      margin-bottom: 4px;
+    }
+
+    .card-craft {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--clr-amber);
+      text-align: right;
+      margin-bottom: 8px;
+    }
+
+    .card-location {
+      font-size: 16px;
+      color: var(--clr-brown);
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 4px;
+      margin-bottom: 20px;
+    }
+
+    .card-tags {
+      display: flex;
+      gap: 4px;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+    }
+
+    .card-tag {
+      background: var(--clr-cream);
+      border: 1px solid var(--clr-border);
+      color: var(--clr-brown);
+      font-size: 14px;
+      padding: 5px 13px;
+      border-radius: 50px;
+    }
+
+    /* ──────────────────────────────────────────
+       EVENTS
+    ────────────────────────────────────────── */
+    .events-section {
+      padding: 80px 64px;
+      background: #fff;
+    }
+
+    .events-layout {
+      display: flex;
+      gap: 48px;
+      margin-top: 48px;
+    }
+
+    .event-list {
+      width: 440px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .event-item {
+      background: var(--clr-cream);
+      border: 1px solid rgba(241,223,218,.5);
+      border-radius: 16px;
+      padding: 25px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      box-shadow: 0 12px 18px rgba(26,20,16,.1);
+    }
+
+    .event-details { flex: 1; }
+
+    .event-type {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--clr-brown);
+      margin-bottom: 4px;
+    }
+
+    .event-dot {
+      width: 8px; height: 8px;
+      border-radius: 9999px;
+      flex-shrink: 0;
+    }
+
+    .event-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--clr-dark);
+      text-align: right;
+      margin-bottom: 4px;
+    }
+
+    .event-venue {
+      font-size: 14px;
+      color: var(--clr-brown);
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 4px;
+    }
+
+    .event-date-box {
+      background: var(--clr-blush);
+      border: 1px solid rgba(219,193,185,.3);
+      border-radius: 8px;
+      width: 80px;
+      height: 80px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .event-day { font-size: 16px; font-weight: 700; color: var(--clr-rust); }
+    .event-month { font-size: 14px; color: var(--clr-brown); }
+
+    .btn-all-events {
+      border: 2px solid #88726b;
+      color: var(--clr-brown);
+      font-family: 'Tajawal', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      padding: 14px;
+      border-radius: 50px;
+      background: transparent;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 8px;
+    }
+
+    /* Featured event card */
+    .featured-event {
+      flex: 1;
+      background: var(--clr-rust);
+      border-radius: 16px;
+      box-shadow: 0 12px 36px rgba(26,20,16,.1);
+      display: flex;
+      overflow: hidden;
+      min-height: 524px;
+    }
+
+    .featured-text {
+      flex: 1;
+      padding: 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-end;
+    }
+
+    .featured-tag {
+      background: var(--clr-amber);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 50px;
+      margin-bottom: 24px;
+      align-self: flex-end;
+    }
+
+    .featured-title {
+      font-size: 32px;
+      font-weight: 700;
+      color: #fff;
+      text-align: right;
+      line-height: 1.3;
+      margin-bottom: 16px;
+    }
+
+    .featured-desc {
+      font-size: 16px;
+      color: var(--clr-peach);
+      text-align: right;
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+
+    .featured-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 48px;
+      width: 100%;
+    }
+
+    .featured-meta-row {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 12px;
+      color: #fff;
+      font-size: 16px;
+    }
+
+    .featured-meta-row svg { flex-shrink: 0; }
+
+    .btn-register {
+      background: var(--clr-cream);
+      color: var(--clr-rust);
+      font-family: 'Tajawal', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+    }
+
+    .featured-image {
+      width: 280px;
+      flex-shrink: 0;
+      background: #f1dfda;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .featured-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      mix-blend-mode: multiply;
+      opacity: .8;
+    }
+
+    .featured-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,.6), transparent);
+    }
+
+    /* Fallback gradient if image fails */
+    .featured-image-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #8b3a1c 0%, #fea767 100%);
+    }
+
+    /* ──────────────────────────────────────────
+       GALLERY
+    ────────────────────────────────────────── */
+    .gallery-section { padding: 80px 64px; }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: 200px 200px;
+      gap: 24px;
+      margin: 48px 0;
+    }
+
+    .gallery-cell {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 12px 36px rgba(26,20,16,.1);
+      position: relative;
+      cursor: pointer;
+    }
+
+    .gallery-cell:hover .gallery-overlay { opacity: 1; }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,.4);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 24px;
+      opacity: 0;
+      transition: opacity .3s ease;
+    }
+
+    .gallery-overlay h4 { font-size: 20px; font-weight: 700; color: #fff; text-align: right; }
+    .gallery-overlay p  { font-size: 16px; color: #fff; text-align: right; }
+
+    .gc-large  { grid-column: 3 / span 2; grid-row: 1 / span 2; }
+    .gc-mid-t  { grid-column: 2; grid-row: 1; }
+    .gc-tall   { grid-column: 1; grid-row: 1 / span 2; }
+    .gc-mid-b  { grid-column: 2; grid-row: 2; }
+
+    .grad-1 { background: linear-gradient(143deg, #8b3a1c 0%, #fea767 100%); }
+    .grad-2 { background: linear-gradient(37deg, #9a4526 0%, #f1dfda 100%); }
+    .grad-3 { background: linear-gradient(to bottom, #005a72, #8b3a1c); }
+    .grad-4 { background: linear-gradient(-37deg, #d4af37 0%, #fea767 100%); }
+
+    .gallery-center {
+      display: flex;
+      justify-content: center;
+    }
+
+    /* ──────────────────────────────────────────
+       NEWSLETTER
+    ────────────────────────────────────────── */
+    .newsletter-wrap {
+      padding: 0 64px 80px;
+    }
+
+    .newsletter {
+      background: var(--clr-footer-bg);
+      border-radius: 32px;
+      padding: 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 12px 36px rgba(26,20,16,.1);
+    }
+
+    .nl-blob1, .nl-blob2 {
+      position: absolute;
+      width: 256px; height: 256px;
+      border-radius: 9999px;
+      filter: blur(32px);
+      pointer-events: none;
+    }
+    .nl-blob1 { background: var(--clr-rust); opacity:.2; top:-96px; right:-96px; }
+    .nl-blob2 { background: var(--clr-amber); opacity:.2; bottom:-96px; left:-96px; }
+
+    .nl-icon { margin: 0 auto 16px; }
+
+    .newsletter h2 {
+      font-size: 48px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    .newsletter p {
+      font-size: 18px;
+      color: var(--clr-border);
+      line-height: 1.6;
+    }
+
+    .nl-form {
+      display: flex;
+      gap: 12px;
+      max-width: 512px;
+      margin: 36px auto 0;
+      direction: rtl;
+    }
+
+    .nl-input {
+      flex: 1;
+      background: #fff;
+      border: none;
+      border-radius: 50px;
+      padding: 14px 24px;
+      font-family: 'Tajawal', sans-serif;
+      font-size: 16px;
+      color: var(--clr-brown);
+      text-align: right;
+      outline: none;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,.05);
+    }
+
+    .nl-btn {
+      background: var(--clr-rust);
+      color: #fff;
+      font-family: 'Tajawal', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      padding: 12px 48px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0,0,0,.1);
+      white-space: nowrap;
+    }
+
+    /* ──────────────────────────────────────────
+       FOOTER
+    ────────────────────────────────────────── */
+    .footer {
+      background: var(--clr-footer-bg);
+      border-top: 1px solid rgba(136,114,107,.2);
+      padding: 80px 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-logo {
+      font-size: 24px;
+      font-weight: 700;
+      color: #fff;
+      text-align: right;
+    }
+
+    .footer-copy {
+      font-size: 16px;
+      color: var(--clr-border);
+      text-align: right;
+      margin-top: 12px;
+    }
+
+    /* ──────────────────────────────────────────
+       UTILITIES
+    ────────────────────────────────────────── */
+    .pin-icon { display: inline-block; }
+
+    @media (max-width: 1024px) {
+      .nav { padding: 8px 24px; }
+      .hero, .section, .events-section, .gallery-section, .footer { padding: 48px 24px; }
+      .newsletter-wrap { padding: 0 24px 48px; }
+      .newsletter { padding: 48px 24px; }
+      .talents-grid { grid-template-columns: repeat(2, 1fr); }
+      .events-layout { flex-direction: column; }
+      .event-list { width: 100%; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .gc-large  { grid-column: 1 / span 2; grid-row: auto; }
+      .gc-mid-t, .gc-mid-b, .gc-tall { grid-column: auto; grid-row: auto; }
+      .hero { flex-direction: column-reverse; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════ NAV ══════════════════ -->
+<header class="nav">
+  <a class="nav-logo" href="#">رغم إعاقتي أبدع</a>
+
+  <ul class="nav-links">
+    <li class="active"><a href="#">الرئيسية</a></li>
+    <li><a href="#">المواهب</a></li>
+    <li><a href="#">الفعاليات</a></li>
+    <li><a href="#">المعرض</a></li>
+    <li><a href="#">تواصل معنا</a></li>
+  </ul>
+
+  <button class="btn-join">انضم إلينا</button>
+</header>
+
+
+<!-- ══════════════════ HERO ══════════════════ -->
+<section class="hero">
+
+  <!-- Text -->
+  <div class="hero-text">
+    <h1 class="hero-heading">
+      <span class="highlight">إبداع</span> بلا حدود، فخر لكل<br>الجزائر
+    </h1>
+
+    <p class="hero-desc">
+      منصة تحتفي بالمواهب الفذة لذوي الهمم في الجزائر. نكتشف، ندعم، ونعرض<br>
+      إبداعات تتجاوز كل التحديات لترسم لوحة من الفخر والإلهام.
+    </p>
+
+    <div class="hero-btns">
+      <button class="btn-outline">استكشف المواهب</button>
+      <button class="btn-primary">اعرض موهبتك</button>
+    </div>
+  </div>
+
+  <!-- Card -->
+  <div class="hero-card-wrap">
+    <div class="blob1"></div>
+    <div class="blob2"></div>
+
+    <div class="talent-card">
+      <div class="talent-week-badge">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="#fff"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        موهبة الأسبوع
+      </div>
+
+      <div class="talent-avatar-wrap">
+        <img src="https://www.figma.com/api/mcp/asset/6461fe80-1cbf-4c4a-80c6-e613abe19ff8" alt="أحمد" onerror="this.style.background='#fceae5';this.alt='';" />
+      </div>
+
+      <div class="talent-name">أحمد</div>
+
+      <div class="talent-location">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#55433d" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        قسنطينة
+      </div>
+
+      <div class="talent-tag">الخط العربي</div>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ══════════════════ STATS ══════════════════ -->
+<div class="stats">
+  <div class="stats-grid">
+    <div class="stat-item">
+      <div class="stat-number">+1,200</div>
+      <div class="stat-label">موهبة مسجلة</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">58</div>
+      <div class="stat-label">ولاية ممثلة</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">3,500</div>
+      <div class="stat-label">عمل فني</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">0</div>
+      <div class="stat-label">فعالية وطنية</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════ TALENTS GRID ══════════════════ -->
+<section class="section">
+  <div class="section-header">
+    <a class="see-all" href="#">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+      عرض الكل
+    </a>
+    <div class="section-heading">
+      <h2>اكتشف المواهب</h2>
+      <p>مبدعون من مختلف ولايات الوطن يشاركون شغفهم</p>
+    </div>
+  </div>
+
+  <div class="talents-grid">
+
+    <!-- Card 1 -->
+    <div class="talent-card-grid">
+      <div class="card-top">
+        <span class="card-badge">جديد</span>
+        <div class="card-avatar" style="background:#fea767; color:#773b00;">س.م</div>
+      </div>
+      <div class="card-name">سارة محمدي</div>
+      <div class="card-craft">صناعة الفخار</div>
+      <div class="card-location">
+        <svg width="12" height="15" viewBox="0 0 24 24" fill="none" stroke="#55433d" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        تيزي وزو
+      </div>
+      <div class="card-tags">
+        <span class="card-tag">تلوين</span>
+        <span class="card-tag">تشكيل يدوي</span>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="talent-card-grid">
+      <div class="card-top">
+        <div></div>
+        <div class="card-avatar" style="background:#005a72; color:#8ecfeb;">ك.ب</div>
+      </div>
+      <div class="card-name">كريم بن علي</div>
+      <div class="card-craft">رسم زيتي</div>
+      <div class="card-location">
+        <svg width="12" height="15" viewBox="0 0 24 24" fill="none" stroke="#55433d" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        وهران
+      </div>
+      <div class="card-tags">
+        <span class="card-tag">ألوان مائية</span>
+        <span class="card-tag">تجريدي</span>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="talent-card-grid">
+      <div class="card-top">
+        <div></div>
+        <div class="card-avatar" style="background:#ffdad6; color:#93000a;">ل.ع</div>
+      </div>
+      <div class="card-name">ليلى عبدون</div>
+      <div class="card-craft">تطريز تقليدي</div>
+      <div class="card-location">
+        <svg width="12" height="15" viewBox="0 0 24 24" fill="none" stroke="#55433d" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        الجزائر العاصمة
+      </div>
+      <div class="card-tags">
+        <span class="card-tag">خياطة</span>
+        <span class="card-tag">كاراكو</span>
+      </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="talent-card-grid">
+      <div class="card-top">
+        <div></div>
+        <div class="card-avatar" style="background:#8b3a1c; color:#ffb59d;">ي.ح</div>
+      </div>
+      <div class="card-name">ياسين حمادي</div>
+      <div class="card-craft">نحت على الخشب</div>
+      <div class="card-location">
+        <svg width="12" height="15" viewBox="0 0 24 24" fill="none" stroke="#55433d" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        بجاية
+      </div>
+      <div class="card-tags">
+        <span class="card-tag">ديكور</span>
+        <span class="card-tag">أثاث</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════ EVENTS ══════════════════ -->
+<section class="events-section">
+  <div class="section-heading">
+    <h2>الفعاليات القادمة</h2>
+    <p style="margin-top:4px;">شاركنا لحظات الإبداع والتألق في مختلف التظاهرات</p>
+  </div>
+
+  <div class="events-layout">
+
+    <!-- List -->
+    <div class="event-list">
+
+      <div class="event-item">
+        <div class="event-details">
+          <div class="event-type">
+            <span>ورشة عمل</span>
+            <span class="event-dot" style="background:var(--clr-amber);"></span>
+          </div>
+          <div class="event-title">أساسيات الخزف الفني</div>
+          <div class="event-venue">
+            <svg width="11" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            مركز الفنون، تيبازة
+          </div>
+        </div>
+        <div class="event-date-box">
+          <div class="event-day">24</div>
+          <div class="event-month">أكتوبر</div>
+        </div>
+      </div>
+
+      <div class="event-item">
+        <div class="event-details">
+          <div class="event-type">
+            <span>معرض محلي</span>
+            <span class="event-dot" style="background:#004153;"></span>
+          </div>
+          <div class="event-title">ألوان الصحراء</div>
+          <div class="event-venue">
+            <svg width="11" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            دار الثقافة، غرداية
+          </div>
+        </div>
+        <div class="event-date-box">
+          <div class="event-day">05</div>
+          <div class="event-month">نوفمبر</div>
+        </div>
+      </div>
+
+      <div class="event-item">
+        <div class="event-details">
+          <div class="event-type">
+            <span>مسابقة</span>
+            <span class="event-dot" style="background:var(--clr-gold);"></span>
+          </div>
+          <div class="event-title">جائزة الإبداع الذهبي</div>
+          <div class="event-venue">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            أونلاين
+          </div>
+        </div>
+        <div class="event-date-box">
+          <div class="event-day">12</div>
+          <div class="event-month">ديسمبر</div>
+        </div>
+      </div>
+
+      <div style="flex:1; display:flex; align-items:flex-end;">
+        <button class="btn-all-events">عرض جميع الفعاليات</button>
+      </div>
+
+    </div>
+
+    <!-- Featured Event -->
+    <div class="featured-event">
+      <div class="featured-text">
+        <span class="featured-tag">حدث وطني</span>
+        <h3 class="featured-title">اليوم الوطني<br>للحرف</h3>
+        <p class="featured-desc">
+          تظاهرة كبرى تجمع أمهر الحرفيين<br>
+          من ذوي الهمم لعرض إبداعاتهم في<br>
+          قلب العاصمة.
+        </p>
+        <div class="featured-meta">
+          <div class="featured-meta-row">
+            <span>قصر المعارض، الصنوبر البحري</span>
+            <svg width="16" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div class="featured-meta-row">
+            <span>15 - 18 نوفمبر 2026</span>
+            <svg width="18" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+        </div>
+        <button class="btn-register">سجل حضورك</button>
+      </div>
+
+      <div class="featured-image">
+        <img src="https://www.figma.com/api/mcp/asset/a376706e-4cd0-432c-9a91-9ba22ec398ce" alt="معرض الفن"
+             onerror="this.parentElement.querySelector('.featured-image-placeholder').style.display='block'; this.style.display='none';" />
+        <div class="featured-image-placeholder" style="display:none;"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════ GALLERY ══════════════════ -->
+<section class="gallery-section">
+  <div class="section-heading">
+    <h2>معرض الإبداعات</h2>
+    <p style="margin-top:4px;">نافذة على الأعمال الفنية المنجزة بأنامل ذهبية</p>
+  </div>
+
+  <div class="gallery-grid">
+
+    <div class="gallery-cell gc-large grad-1">
+      <div class="gallery-overlay">
+        <h4>اللوحة الحالمة</h4>
+        <p>بقلم: كريم بن علي</p>
+      </div>
+    </div>
+
+    <div class="gallery-cell gc-mid-t grad-2">
+      <div class="gallery-overlay">
+        <h4>جرة فخارية</h4>
+      </div>
+    </div>
+
+    <div class="gallery-cell gc-tall grad-3">
+      <div class="gallery-overlay">
+        <h4>تطريز جزائري</h4>
+        <p>ليلى عبدون</p>
+      </div>
+    </div>
+
+    <div class="gallery-cell gc-mid-b grad-4">
+      <div class="gallery-overlay">
+        <h4>منحوتة</h4>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="gallery-center">
+    <button class="btn-outline">تصفح المعرض كاملاً</button>
+  </div>
+</section>
+
+
+<!-- ══════════════════ NEWSLETTER ══════════════════ -->
+<div class="newsletter-wrap">
+  <div class="newsletter">
+    <div class="nl-blob1"></div>
+    <div class="nl-blob2"></div>
+
+    <div class="nl-icon">
+      <svg width="40" height="32" viewBox="0 0 40 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="40" height="32" rx="4" fill="#6c2407"/>
+        <path d="M4 8l16 12L36 8" stroke="#ffb59c" stroke-width="2"/>
+      </svg>
+    </div>
+
+    <h2>ابقَ على اطلاع</h2>
+    <p>اشترك في النشرة البريدية ليصلك جديد المواهب، الفعاليات، وقصص النجاح الملهمة.</p>
+
+    <div class="nl-form">
+      <button class="nl-btn">اشتراك</button>
+      <input class="nl-input" type="email" placeholder="البريد الإلكتروني" />
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════ FOOTER ══════════════════ -->
+<footer class="footer">
+  <div></div><!-- spacer for justify-content:space-between -->
+  <div>
+    <div class="footer-logo">رغم إعاقتي أبدع</div>
+    <div class="footer-copy">© ٢٠٢٦ رغم إعاقتي أبدع. صنع بكل حب وفخر.</div>
+  </div>
+</footer>
+
+</body>
+</html>
